@@ -1,0 +1,3 @@
+
+ALTER TABLE public.investments ADD COLUMN IF NOT EXISTS updated_at TIMESTAMPTZ not null DEFAULT now();
+ALTER TABLE public.investments ADD COLUMN IF NOT EXISTS disabled_at TIMESTAMPTZ DEFAULT NULL;

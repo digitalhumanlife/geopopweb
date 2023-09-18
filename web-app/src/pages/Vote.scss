@@ -1,0 +1,196 @@
+@import '../statics/styles/variables';
+@import '../statics/styles/mixins';
+
+.vote-wrapper {
+  background-color: white;
+
+  .vote-container {
+    padding: 124px 94px;
+    width: $page-width;
+    margin: 0 auto;
+
+    h1 {
+      font-size: 29.17px;
+      line-height: 29.17px;
+    }
+
+    .new-vote {
+      display: flex;
+      justify-content: right;
+      margin-top: 30px;
+      margin-bottom: 30px;
+      .p-button {
+        background-color: #678dce;
+        border-radius: 0;
+        padding: 0 12px;
+        min-width: 115px;
+        height: 44px;
+        font-size: 16px;
+      }
+    }
+
+    .search-group {
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 89px;
+      margin-bottom: 49px;
+
+      .p-dropdown {
+        border: none;
+        background: transparent;
+        font-size: 14.07px;
+        width: 80px;
+        border-radius: 0;
+        border-bottom: 2px solid #000;
+        margin-right: 18px;
+
+        .p-dropdown-label,
+        .p-dropdown-trigger {
+          background: transparent;
+          font-size: 14.07px;
+        }
+
+        .p-dropdown-label {
+          text-align: left;
+        }
+      }
+
+      .search-input {
+        border-bottom: 2px solid #000;
+
+        .p-inputtext {
+          border: none;
+          font-size: 14.07px;
+          border-radius: 0;
+          background: transparent;
+          box-shadow: none;
+        }
+      }
+    }
+
+    .vote-content {
+      .vote-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 16.25px;
+        line-height: 16.25px;
+        padding: 15px 0;
+        border-bottom: 2px solid #cecece;
+
+        .left-content {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 16.25px;
+          line-height: 16.25px;
+
+          .new-label {
+            background-color: #6791fe;
+            border-radius: 20px;
+            padding: 6px 11px;
+            color: #ffffff;
+            margin-right: 14px;
+            font-size: 12.51px;
+          }
+        }
+        .right-content {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 15px;
+          line-height: 15px;
+
+          .pi {
+            margin-left: 47px;
+          }
+        }
+      }
+      .vote-content-row {
+        font-size: 16.25px;
+        line-height: 16.25px;
+        white-space: pre;
+        padding: 20px;
+        border-bottom: 1px solid #cecece;
+        position: relative;
+
+        .edit-remove-group {
+          position: absolute;
+          top: 20px;
+          right: 0;
+
+          .p-button {
+            margin-left: 10px;
+            background-color: #303030;
+          }
+        }
+
+        p {
+          padding-right: 240px;
+          white-space: pre-line;
+          line-height: 1.5;
+        }
+      }
+    }
+
+    .vote-paginator {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15.83px;
+      line-height: 15.83px;
+      font-weight: 400;
+      margin-top: 38px;
+
+      button {
+        border: 1px solid #bdbdbd;
+        background-color: transparent;
+        width: 24px;
+        height: 24px;
+
+        &:not(:last-child) {
+          margin-right: 4px;
+        }
+
+        span {
+          font-weight: normal;
+          font-size: 15.83px;
+          line-height: 15.83px;
+        }
+      }
+
+      .paginator-number {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        div {
+          margin-left: 30px;
+          color: #a9a9a9;
+
+          &:last-child {
+            margin-right: 30px;
+          }
+
+          &.active {
+            color: #000000;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down('xs') {
+  .vote-wrapper {
+    .vote-container {
+      padding: 44px 20px;
+      width: 100%;
+
+      .search-group {
+        margin-top: 40px;
+      }
+    }
+  }
+}

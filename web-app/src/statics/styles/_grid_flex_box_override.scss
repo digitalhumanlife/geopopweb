@@ -1,0 +1,39 @@
+@import 'mixins';
+
+@include media-breakpoint-up('md') {
+  #root {
+    padding: 0;
+  }
+}
+
+@include media-breakpoint-up('xl') {
+  #root {
+    padding: 0;
+  }
+}
+
+@include media-breakpoint-up('xs') {
+  #root {
+    .container {
+      // width: 100%;
+      // max-width: 100%;
+    }
+  }
+}
+
+#root .no-padding-lr {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+#root .little-gap {
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#building3d {
+  canvas {
+    border-radius: 10px;
+    outline: none;
+  }
+}

@@ -1,0 +1,15 @@
+.fileupload-field {
+  border: none;
+
+  .p-fileupload-buttonbar {
+    button {
+      display: none;
+    }
+  }
+
+  .p-fileupload-row {
+    > div:nth-child(3) {
+      // display: none;
+    }
+  }
+}

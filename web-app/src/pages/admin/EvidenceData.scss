@@ -1,0 +1,76 @@
+@import '../../statics/styles/variables';
+@import '../../statics/styles/mixins';
+
+.evidence-data {
+  display: block;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 94px 0 31px;
+  width: 21cm;
+  min-height: 29.7cm;
+  &__head {
+    display: flex;
+    margin-bottom: 50px;
+    font-size: 16px;
+    line-height: 24px;
+    .tt {
+      margin-left: auto;
+    }
+    .code {
+      margin-left: 50px;
+    }
+  }
+  &__table {
+    border-bottom: 1px solid #c5c6c6;
+    table {
+      width: 100%;
+    }
+    th,
+    td {
+      padding: 15px 5px;
+      text-align: center;
+      font-size: 16px;
+    }
+    th {
+      border: solid #c5c6c6;
+      border-width: 1px 0;
+      background-color: #f3f3f3;
+    }
+    .align-left {
+      text-align: left;
+    }
+  }
+}
+
+@page {
+  size: A4;
+  margin: 0 auto;
+}
+
+@media print {
+  body,
+  .evidence-data {
+    size: A4;
+    margin: 0 auto;
+    box-shadow: 0;
+    page-break-after: always;
+  }
+  .header-wrapper,
+  .footer-wrapper,
+  .content-top,
+  .content-top--hidden {
+    display: none;
+  }
+}
+
+@include media-breakpoint-down('xs') {
+  .evidence-data {
+    width: 100%;
+    &__table {
+      overflow: auto;
+      table {
+        width: 21cm;
+      }
+    }
+  }
+}

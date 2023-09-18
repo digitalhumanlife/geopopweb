@@ -1,0 +1,19 @@
+FROM node:16.19.0-bullseye AS node
+
+RUN yarn global add pm2
+
+RUN mkdir -p /usr/src/app
+
+WORKDIR /usr/src/app
+
+COPY web-api/.yarn/releases/ /usr/src/app/.yarn/releases/
+COPY web-api/.yarn/plugins/ /usr/src/app/.yarn/plugins/
+COPY web-api/.yarnrc.yml web-api/package.json web-api/yarn.lock /usr/src/app/
+
+RUN yarn install
+
+COPY web-api/. /usr/src/app
+
+EXPOSE 3002
+
+CMD pm2-runtime start "/usr/src/app/pm2-server.json"

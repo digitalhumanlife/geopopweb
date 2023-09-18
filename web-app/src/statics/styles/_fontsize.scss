@@ -1,0 +1,26 @@
+@import 'variables';
+@import 'mixins';
+
+.font-black {
+  font-weight: 900;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.font-light {
+  font-weight: 300;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.font-regular {
+  font-weight: 400;
+}
+
+.font-thin {
+  font-weight: 100;
+}

@@ -1,0 +1,102 @@
+version: '3'
+services:
+  web-api-p2p:
+    # container_name: web-api-p2p
+    image: reg.dev.opnd.io/gc/bite-web-api:release
+    volumes:
+      - '/data/uploads:/usr/src/app/uploads'
+    ports:
+      - '4002:4002'
+    networks:
+      gc:
+        ipv4_address: "172.18.0.9"
+    restart: always
+
+  web-app-p2p:
+    image: reg.dev.opnd.io/gc/bite-web-app:release
+    environment:
+      env_file: /Volumes/DATA/env_file
+    ports:
+      - '4007:4007'
+    networks:
+      gc:
+        ipv4_address: "172.18.0.8"
+    restart: always
+    stdin_open: true
+
+  backend-admin:
+    image: reg.dev.opnd.io/gc/backend-admin:${TAG:-main}
+    # container_name: backend-admin
+    environment:
+      - EXTERNAL_URL=${EXTERNAL_URL}
+      - EXTERNAL_MOBILE_URL=${EXTERNAL_MOBILE_URL}
+      - COOKIE_DOMAIN=${COOKIE_DOMAIN}
+      - SECRET_JWT=${SECRET_JWT}
+      - DB_NAME=${DB_NAME}
+      - DB_ADAPTER=${DB_ADAPTER}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_SSL_MODE=${DB_SSL_MODE}
+    volumes:
+      - '/data/uploads:/usr/src/app/uploads'
+    ports:
+      - '4003:1323'
+
+    networks:
+      gc:
+        ipv4_address: "172.18.0.6"
+    restart: always
+
+  frontend-admin:
+    image: reg.dev.opnd.io/gc/frontend-admin:${TAG:-main}
+    # container_name: frontend-admin
+    environment:
+      - EXTERNAL_URL=${EXTERNAL_URL}
+      - EXTERNAL_MOBILE_URL=${EXTERNAL_MOBILE_URL}
+      - COOKIE_DOMAIN=${COOKIE_DOMAIN}
+    ports:
+      - '4004:3000'
+    networks:
+      gc:
+        ipv4_address: "172.18.0.7"
+    restart: always
+
+  app:
+    image: 'jc21/nginx-proxy-manager:2.9.18'
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '81:81'
+      - '443:443'
+    volumes:
+      - ./npm-data:/data
+      - ./letsencrypt:/etc/letsencrypt
+      # - ./web-app/build:/web-app
+    networks:
+        - gc
+
+  postgres:
+    # container_name: postgres
+    image: postgres:12-alpine
+    environment:
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PORT=${DB_PORT}
+    ports:
+      - 5432:5432
+    volumes:
+      - ./db-gen.sql:/docker-entrypoint-initdb.d/db-gen.sql
+      # - "/data/postgres:/var/lib/postgresql/data"
+      - './data/postgres:/var/lib/postgresql/data'
+    networks:
+      gc:
+        ipv4_address: "172.18.0.10"
+    restart: always
+
+networks:
+  gc:
+    external: true
+

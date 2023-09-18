@@ -1,0 +1,16 @@
+@import '../statics/styles/variables';
+@import '../statics/styles/mixins';
+
+.inputtext-field {
+  border: none;
+  height: 100%;
+
+  .start-icon {
+    padding-left: 30px;
+    padding-right: 3px;
+  }
+
+  .p-inputgroup {
+    width: 100% !important;
+  }
+}

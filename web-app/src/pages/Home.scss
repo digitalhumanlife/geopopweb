@@ -1,0 +1,100 @@
+@import '../statics/styles/variables';
+@import '../statics/styles/mixins';
+
+.home-container {
+  .user-profile {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    z-index: 1;
+
+    span {
+      display: block;
+      width: 50px;
+      height: 50px;
+      text-align: center;
+      cursor: pointer;
+      border-radius: 50%;
+      background: #fff;
+      border: 1px solid #bfbfbf;
+
+      &:hover {
+        border-color: #1a2dff;
+      }
+
+      img {
+        width: 25px;
+        height: 25px;
+        margin-top: 10px;
+        margin-left: -2px;
+        border: none;
+      }
+    }
+  }
+
+  .user-profile-overlay {
+    width: 200px;
+
+    .p-overlaypanel-content {
+      padding: 0;
+      a {
+        color: $primary-color;
+      }
+    }
+
+    &::before {
+      right: 15px;
+      left: auto;
+    }
+
+    &::after {
+      right: 15px;
+      left: auto;
+    }
+
+    .menu-header,
+    .menu-footer {
+      background-color: $highlight-color;
+      color: $secondary-color;
+      padding: 10px;
+      cursor: pointer;
+
+      a {
+        color: $secondary-color;
+      }
+    }
+
+    .menu-header {
+      text-transform: uppercase;
+      font-weight: bold;
+      padding: 15px 10px;
+    }
+
+    .item-group {
+      display: flex;
+      align-items: center;
+      width: 80%;
+      height: 100%;
+    }
+
+    .menu-item {
+      padding: 10px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+
+      &:hover {
+        background-color: #f5f5f5;
+      }
+
+      .item-group {
+        span {
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+}

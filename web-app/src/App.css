@@ -1,0 +1,18 @@
+.flickity-page-dots {
+  bottom: 20px !important;
+}
+
+.react-date-picker__inputGroup__year {
+  width: 37px !important;
+  font-size: 15px !important;
+}
+
+.react-date-picker__inputGroup__month {
+  width: 16px !important;
+  font-size: 15px !important;
+}
+
+.react-date-picker__inputGroup__day {
+  width: 16px !important;
+  font-size: 15px !important;
+}

@@ -1,0 +1,130 @@
+@import '../statics/styles/variables';
+@import '../statics/styles/mixins';
+
+.loan-wrapper {
+  margin-top: 10px;
+  h1,
+  h4 {
+    color: $logo-color;
+  }
+  hr {
+    border-color: #ccc;
+    border-width: 2px;
+  }
+
+  .group-title {
+    margin-top: 20px;
+  }
+
+  .container > .row {
+    margin-top: 10px;
+  }
+
+  .two-cols {
+    margin: -5px -8px;
+  }
+
+  .button-group {
+    padding: 1rem 0;
+
+    button {
+      margin-right: 0.5rem;
+    }
+  }
+
+  .go-btn {
+    margin-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .search-result-wrapper {
+    position: relative;
+
+    .search-result {
+      position: absolute;
+      top: 62px;
+      left: 8px;
+      width: calc(100% - 16px);
+      background: #fff;
+      border: 1px solid #ccc;
+      z-index: 1;
+      border-radius: 0 0 10px 10px;
+    }
+
+    .search-result {
+      background: $secondary-color;
+      box-shadow: $shadow-color;
+      @include fontSize(14px);
+      border-radius: 2px;
+
+      .search-result-header {
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+
+        .advanced-search {
+          cursor: pointer;
+          color: $highlight-color;
+        }
+
+        .clear-search {
+          cursor: pointer;
+          color: $error-text-color;
+        }
+
+        .pi-search-icon {
+          @include fontSize(13px);
+          padding: 5px;
+        }
+      }
+
+      .search-result-content {
+        max-height: 300px;
+        overflow: auto;
+
+        .search-result-item {
+          padding: 10px;
+          display: flex;
+          cursor: pointer;
+          border-top: 1px solid #efefef;
+
+          &:hover {
+            color: $bg-search;
+          }
+
+          &.active {
+            color: $highlight-color;
+          }
+
+          .search-result-icon {
+            width: 20px;
+            align-self: center;
+          }
+        }
+      }
+
+      .show-more {
+        padding: 0 10px 10px;
+
+        a {
+          @include fontSize(12px);
+          cursor: pointer;
+          color: $highlight-color;
+        }
+      }
+    }
+  }
+}
+
+.loan-require-login-wrapper {
+  margin-top: 20px;
+  border: 1px solid #ccc;
+  padding: 20px;
+
+  .login-btn {
+    border: 1px solid #007ad9;
+    border-radius: 5px;
+    padding: 5px 10px;
+  }
+}

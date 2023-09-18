@@ -1,0 +1,120 @@
+# https://taskfile.dev
+
+version: "3"
+
+dotenv: [".env"]
+
+vars:
+  ENV_BUILDX_BUILDER: '{{default "default" .BUILDX_BUILDER}}'
+  ENV_BUILD_NUMBER: '{{default "0" .BUILD_NUMBER}}'
+  ENV_BUILDX_PLATFORM: '{{default "linux/amd64" .BUILDX_PLATFORM}}'
+  ENV_CI_REGISTRY: '{{default "reg.dev.opnd.io" .CI_REGISTRY}}'
+  ENV_IS_PULL: '{{default "true" .IS_PULL}}'
+  ENV_IS_PUSH: '{{default "false" .IS_PUSH}}'
+  GIT_URL:
+    sh: git ls-remote --get-url
+  GIT_GROUP: '{{first (slice (splitList "/" .GIT_URL) 3 4)}}'
+  GIT_PROJECT: '{{first (slice (splitList ".git" (first (slice (splitList "/" .GIT_URL) 4 5))) 0)}}'
+
+tasks:
+  install:tools:
+    desc: Install all optional cli tools
+    dir: scripts
+    cmds:
+      - task: install:slug-cat
+    silent: true
+
+  install:slug-cat:
+    desc: Install slug-cat tool
+    cmds:
+      - go install github.com/zcube/slug-cat@latest
+
+  web-api:
+    run: once
+    cmds:
+      - task: docker-build
+        vars:
+          MESSAGE: web-api
+          CI_REGISTRY_PATH: "{{.GIT_GROUP}}/{{.GIT_PROJECT}}-api"
+          DOCKERFILE_PATH: Dockerfile-api
+          DOCKERBUILD_PATH: .
+          BUILD_ARGS: |
+            API_BASE_URL
+            GIT_COMMIT={{.GIT_COMMIT}}
+            GIT_BRANCH={{.GIT_BRANCH}}
+            GIT_TAG={{.GIT_TAG}}
+            GIT_VERSION={{.GIT_VERSION}}
+
+  web-app:
+    vars:
+      SLUG_BRANCH_NAME:
+        sh: echo ${BRANCH_NAME:-$(git symbolic-ref --short HEAD)} | slug-cat
+    cmds:
+      - task: docker-build
+        vars:
+          MESSAGE: web-app
+          CI_REGISTRY_PATH: "{{.GIT_GROUP}}/{{.GIT_PROJECT}}-app"
+          DOCKERFILE_PATH: Dockerfile
+          DOCKERBUILD_PATH: .
+          BUILD_ARGS: |
+            API_BASE_URL
+            GIT_COMMIT={{.GIT_COMMIT}}
+            GIT_BRANCH={{.GIT_BRANCH}}
+            GIT_TAG={{.GIT_TAG}}
+            GIT_VERSION={{.GIT_VERSION}}
+
+  npm:
+    vars:
+      SLUG_BRANCH_NAME:
+        sh: echo ${BRANCH_NAME:-$(git symbolic-ref --short HEAD)} | slug-cat
+    deps:
+      - task: web-app
+    cmds:
+      - task: docker-build
+        vars:
+          MESSAGE: nginx
+          CI_REGISTRY_PATH: "{{.GIT_GROUP}}/{{.GIT_PROJECT}}-npm"
+          DOCKERFILE_PATH: Dockerfile.npm
+          DOCKERBUILD_PATH: .
+          BUILD_ARGS: |
+            API_BASE_URL
+            GIT_COMMIT={{.GIT_COMMIT}}
+            GIT_BRANCH={{.GIT_BRANCH}}
+            GIT_TAG={{.GIT_TAG}}
+            GIT_VERSION={{.GIT_VERSION}}
+
+  all:
+    deps:
+      - task: web-api
+      - task: web-app
+      - task: npm
+
+  docker-build:
+    vars:
+      GIT_COMMIT:
+        sh: git log -n 1 --format=%h
+      GIT_BRANCH:
+        sh: echo ${BRANCH_NAME:-$(git symbolic-ref --short HEAD)}
+      GIT_TAG_LONG:
+        sh: git describe --tags --long --dirty --always
+      GIT_TAG:
+        sh: git describe --tags --always
+      GIT_VERSION: "{{.GIT_TAG_LONG}}-{{.GIT_BRANCH}}"
+      SLUG_BRANCH_NAME:
+        sh: echo ${BRANCH_NAME:-$(git symbolic-ref --short HEAD)} | slug-cat
+
+    label: "docker-build-{{.MESSAGE}}"
+    cmds:
+      - |
+        docker buildx --builder {{.ENV_BUILDX_BUILDER}} build \
+        --cache-from="type=registry,ref={{.ENV_CI_REGISTRY}}/{{.CI_REGISTRY_PATH}}:{{.SLUG_BRANCH_NAME}}" \
+        {{if eq .ENV_IS_PUSH "true"}}--push {{end}}{{if not (eq .ENV_IS_PUSH "true")}}--load {{end}} \
+        {{if not (eq .ENV_IS_PULL "false")}}--pull {{end}} \
+        {{range $i, $line := .BUILD_ARGS | splitLines -}}{{if not (eq $line "")}} --build-arg {{$line}}{{end}}{{end}} \
+        --build-arg ENV_BUILD_NUMBER={{.ENV_BUILD_NUMBER}} \
+        --build-arg BUILDKIT_INLINE_CACHE=1 \
+        --platform={{.ENV_BUILDX_PLATFORM}} \
+        --progress=plain \
+        -t "{{.ENV_CI_REGISTRY}}/{{.CI_REGISTRY_PATH}}:{{.SLUG_BRANCH_NAME}}-{{.ENV_BUILD_NUMBER}}" \
+        -t "{{.ENV_CI_REGISTRY}}/{{.CI_REGISTRY_PATH}}:{{.SLUG_BRANCH_NAME}}" \
+        -f "{{.DOCKERFILE_PATH}}" "{{.DOCKERBUILD_PATH}}"

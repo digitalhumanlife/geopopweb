@@ -1,0 +1,9 @@
+.yarn/*
+# for zero-install
+# !.yarn/cache
+# !.yarn/patches
+!.yarn/plugins
+# !.yarn/versions
+.env
+!.yarn/releases
+yarn-error.log

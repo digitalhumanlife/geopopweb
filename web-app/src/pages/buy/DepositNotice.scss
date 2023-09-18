@@ -1,0 +1,143 @@
+@import '../../statics/styles/variables';
+@import '../../statics/styles/mixins';
+
+.deposit-notice-wrapper {
+  .deposit-notice-container {
+    padding: 124px 227px 139px;
+    width: $page-width;
+    margin: 0 auto;
+
+    .title {
+      font-size: 29.16px;
+      line-height: 29.16px;
+    }
+
+    .deposit-blue-title {
+      font-size: 17.5px;
+      line-height: 17.5px;
+      margin-top: 30px;
+      color: #6287de;
+    }
+
+    .deposit-top-content {
+      border-top: 2px solid #535353;
+      border-bottom: 2px solid #535353;
+      padding: 42px 38px;
+      display: flex;
+      flex-direction: row;
+      margin-top: 82px;
+
+      .top-content-left {
+        width: 380px;
+      }
+
+      .top-content-title {
+        color: #8c8c8c;
+        font-size: 15px;
+        line-height: 15px;
+        padding-bottom: 19px;
+      }
+
+      .top-content-content {
+        display: flex;
+        align-items: center;
+
+        p {
+          font-size: 17.5px;
+          line-height: 17.5px;
+          margin-top: 13px;
+          color: #535353;
+
+          &:first-child {
+            width: 123px;
+          }
+        }
+      }
+
+      .top-content-right {
+        p {
+          font-size: 17.5px;
+          line-height: 17.5px;
+          margin-top: 13px;
+        }
+      }
+    }
+
+    .deposit-notice-img {
+      padding: 86px 92px;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .go-to-my-page {
+      text-align: center;
+      font-size: 14.16px;
+      line-height: 14.16px;
+      color: #535353;
+
+      .text-black {
+        color: #535353;
+        text-decoration: underline;
+      }
+    }
+
+    .submit-wrapper {
+      text-align: center;
+      margin-top: 42px;
+
+      .p-button {
+        width: 159px;
+        height: 54px;
+        background-color: #3f3f3f;
+        border-radius: 0;
+        box-shadow: none;
+        font-size: 17.5px;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down('xs') {
+  .deposit-notice-wrapper {
+    .deposit-notice-container {
+      padding: 44px 20px;
+      width: 100%;
+
+      .deposit-top-content {
+        padding: 20px;
+
+        .top-content-left {
+          width: 70%;
+        }
+
+        .top-content-title {
+          font-size: 12px;
+          line-height: 12px;
+        }
+
+        .top-content-content {
+          p {
+            font-size: 13px;
+            line-height: 13px;
+            &:first-child {
+              width: 80px;
+            }
+          }
+        }
+
+        .top-content-right {
+          width: 30%;
+          p {
+            font-size: 13px;
+            line-height: 13px;
+          }
+        }
+      }
+      .deposit-notice-img {
+        padding: 60px 40px;
+      }
+    }
+  }
+}

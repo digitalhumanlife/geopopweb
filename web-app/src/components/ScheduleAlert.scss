@@ -1,0 +1,201 @@
+@import '../statics/styles/variables';
+@import '../statics/styles/mixins';
+
+.common-dialog--schedule {
+  &.p-dialog {
+    .p-dialog-content {
+      padding: 80px 40px;
+      text-align: center;
+    }
+  }
+  .title {
+    color: #303030;
+    font-size: 18px;
+    line-height: 25px;
+  }
+  .sub-sbj {
+    margin-top: 25px;
+    color: #303030;
+    font-size: 18px;
+    line-height: 25px;
+  }
+  ul:not(.dtl) {
+    margin-top: 57px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .input-select {
+    display: inline-flex;
+    align-items: center;
+    margin: 0 15px;
+    height: 26px;
+    label {
+      display: flex;
+      align-items: center;
+      margin: 0;
+      color: #303030;
+      font-size: 18px;
+      line-height: 26px;
+    }
+    .icon-check {
+      display: flex;
+      align-items: center;
+      position: relative;
+      margin-left: 6px;
+      padding: 5px;
+      cursor: pointer;
+      flex-shrink: 0;
+      &:before {
+        content: '';
+        display: inline-block;
+        flex-shrink: 0;
+        border: 1px solid #707070;
+        border-radius: 9px;
+        background-color: #fff;
+        width: 18px;
+        height: 18px;
+      }
+    }
+    input {
+      position: absolute;
+      visibility: hidden;
+      &:checked {
+        + label {
+          .icon-check {
+            &:before {
+              background-color: #678dce;
+              border-color: #678dce;
+            }
+            &:after {
+              content: '';
+              position: absolute;
+              top: 9px;
+              left: 12px;
+              border: solid #fff;
+              border-width: 0 2px 2px 0;
+              width: 5px;
+              height: 9px;
+              transform: rotate(45deg);
+            }
+          }
+        }
+      }
+      &:disabled + label {
+        opacity: 0.36;
+      }
+    }
+  }
+  .p-inputtext {
+    margin: 30px 0 0;
+    border-color: #ebebeb;
+    border-radius: 4px;
+    background-color: #f3f3f3;
+    box-sizing: border-box;
+    padding: 7px 10px;
+    width: 100%;
+    font-size: 16px;
+    line-height: 24px;
+    box-shadow: none;
+    &::placeholder {
+      color: #c5c6c6;
+    }
+  }
+
+  .cmt {
+    margin-top: 61px;
+    color: #303030;
+    font-size: 18px;
+    line-height: 26px;
+  }
+  .result {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 26px;
+    background-color: #ebebeb;
+    border-radius: 4px;
+    padding: 8px 30px;
+    color: #303030;
+    text-align: left;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 24px;
+    dt {
+      padding-right: 25px;
+    }
+    dd {
+      overflow-wrap: anywhere;
+      word-break: break-all;
+    }
+  }
+}
+
+@include media-breakpoint-down('xs') {
+  .common-dialog.common-dialog--schedule {
+    max-width: 300px;
+    height: 350px;
+    .p-dialog-content {
+      padding: 50px 15px 42px;
+      .sub-sbj {
+        margin-top: 11px;
+        font-size: 17px;
+        font-family: 'Noto Sans KR Regular';
+      }
+    }
+    ul:not(.dtl) {
+      margin-top: 40px;
+    }
+    .input-select {
+      margin: 0 10px;
+      label {
+        font-size: 17px;
+        line-height: 24px;
+      }
+      .icon-check {
+        margin: 0;
+        &:before {
+          width: 13px;
+          height: 13px;
+        }
+      }
+      input:checked + label {
+        .icon-check {
+          &:after {
+            top: 8px;
+            left: 10px;
+            border-width: 0 1px 1px 0;
+            width: 4px;
+            height: 6px;
+          }
+        }
+      }
+    }
+    .p-inputtext {
+      margin-top: 15px;
+      padding: 5px 10px;
+      font-size: 15px;
+      font-weight: bold;
+      font-weight: 300;
+      line-height: 22px;
+      &::placeholder {
+        color: #c5c6c6;
+        font-weight: 300;
+      }
+    }
+    .cmt {
+      margin-top: 35px;
+      + .result {
+        margin-top: 20px;
+      }
+    }
+    .result {
+      padding: 7px 13px;
+      font-size: 12px;
+      font-weight: bold;
+      line-height: 17px;
+      dt {
+        padding-right: 17px;
+      }
+    }
+  }
+}

@@ -1,0 +1,4 @@
+FROM reg.dev.opnd.io/gc/bite-web-app:release AS web-app
+FROM jc21/nginx-proxy-manager:2.9.18
+
+COPY --from=web-app /usr/src/app/build /web-app

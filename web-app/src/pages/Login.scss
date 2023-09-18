@@ -1,0 +1,325 @@
+@import '../statics/styles/variables';
+@import '../statics/styles/mixins';
+
+.login-container {
+  border-top: 1px solid #c5c6c6;
+  padding: 174px 0 300px;
+
+  h1 {
+    font-size: 30px;
+    line-height: 44px;
+    font-weight: bold;
+    letter-spacing: 2px;
+  }
+
+  .form-group {
+    width: 500px;
+    margin: 136px auto 0;
+
+    .form-control {
+      margin: 0;
+      font-size: 16px;
+    }
+    .input-text {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #c5c6c6;
+      height: 80px;
+      font-size: 15px;
+      label {
+        flex-shrink: 0;
+        margin: 0;
+        padding-left: 30px;
+        width: 120px;
+        color: #303030;
+        font-size: 18px;
+        font-weight: bold;
+        + div {
+          position: relative;
+          flex-grow: 1;
+        }
+      }
+      input {
+        border: 0 none;
+        box-sizing: none;
+      }
+    }
+
+    input {
+      &::placeholder {
+        color: #c3c3c3;
+      }
+      &:focus {
+        box-shadow: none;
+      }
+    }
+
+    .input-feedback {
+      position: absolute;
+      top: 100%;
+      right: 15px;
+      font-size: 14px;
+    }
+
+    .signin-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 6px;
+      background-color: #6287de;
+      width: 100%;
+      height: 60px;
+      line-height: 60px;
+      -webkit-transition: all 0.4s;
+      -o-transition: all 0.4s;
+      -moz-transition: all 0.4s;
+      transition: all 0.4s;
+      .p-button-label {
+        font-size: 18px;
+      }
+      &:disabled {
+        background-color: #ccc;
+        border-color: #ccc;
+      }
+    }
+
+    .remember-me-group {
+      display: flex;
+      align-items: center;
+      margin-top: 30px;
+      padding: 0 10px;
+      color: #303030;
+      font-size: 18px;
+      .p-checkbox {
+        width: 24px;
+        height: 24px;
+
+        .p-checkbox-box {
+          border: 1px solid #707070;
+          border-radius: 12px;
+          width: 24px;
+          height: 24px;
+          &.p-highlight {
+            background-color: #678dce;
+            border-color: #678dce;
+            padding: 4px;
+            color: #fff;
+          }
+        }
+
+        .p-checkbox-icon {
+          font-size: 15px;
+        }
+      }
+
+      label {
+        margin: 0 0 0 18px;
+        cursor: pointer;
+        font-family: 'Noto Sans KR Regular';
+      }
+    }
+
+    .login-btns {
+      margin-top: 54px;
+    }
+
+    .text-field {
+      padding: 28px 0;
+      text-align: center;
+      &:before {
+        content: '';
+        display: block;
+        margin: 13px 0 0;
+        background-color: #c5c6c6;
+        width: 100%;
+        height: 1px;
+      }
+      span {
+        display: block;
+        margin: -15px auto 0;
+        background-color: #fff;
+        width: 60px;
+        color: #777;
+        font-size: 18px;
+        line-height: 26px;
+      }
+    }
+    .signin-social {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      position: relative;
+      font-weight: normal;
+      border-radius: 6px;
+      height: 60px;
+      padding: 5px;
+      width: 100%;
+      font-size: 18px;
+      border: none;
+
+      &.signin-phone {
+        background-color: #ffffff;
+      }
+
+      &.signin-google {
+        background-color: #ffffff;
+      }
+
+      &.signin-kakao {
+        background-color: #fee500;
+        color: #3b1e1e;
+      }
+
+      &.signin-naver {
+        background-color: #00bf18;
+        color: #ffffff;
+      }
+
+      img {
+        flex-shrink: 0;
+        width: 24px;
+        height: 24px;
+        margin-right: 24px;
+      }
+      span {
+        display: block;
+        text-align: center;
+        font-size: 18px;
+      }
+    }
+
+    .phone-group {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+
+      > div {
+        width: 100%;
+      }
+
+      .p-dropdown {
+        width: 80px;
+
+        .p-dropdown-label {
+          font-size: 20px;
+          padding-top: 12px;
+        }
+      }
+    }
+  }
+
+  .forgot-password-row {
+    margin-top: 24px;
+    color: #777;
+    text-align: center;
+    font-size: 16px;
+    font-family: 'Noto Sans KR Regular';
+
+    span {
+      cursor: pointer;
+
+      &:nth-child(2n) {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down('xs') {
+  .login-container {
+    border-top: 0 none;
+    padding: 90px 0 120px;
+    h1 {
+      font-size: 21px;
+      line-height: 30px;
+    }
+
+    .form-group {
+      padding-top: 75px;
+      width: calc(100% - 75px);
+      margin: 0 auto;
+      input {
+        font-size: 13px;
+      }
+      .input-text {
+        height: 57px;
+        label {
+          padding-left: 15px;
+          width: 85px;
+        }
+      }
+      .p-inputgroup .icon.eye-icon {
+        right: 15px;
+        width: 20px;
+      }
+
+      .remember-me-group {
+        margin-top: 15px;
+        font-size: 17px;
+        .p-checkbox {
+          width: 21px;
+          height: 21px;
+          .p-checkbox-box {
+            width: 21px;
+            height: 21px;
+          }
+          .p-checkbox-icon {
+            font-size: 12px;
+          }
+        }
+        label {
+          margin-left: 8px;
+        }
+      }
+      .login-btns {
+        margin: 60px 25px 0;
+      }
+      .signin-btn {
+        border-radius: 3px;
+        height: 50px;
+        line-height: 50px;
+        .p-button-label {
+          font-size: 17px;
+        }
+      }
+
+      .text-field {
+        margin: 0 10px;
+        padding: 20px 0;
+        span {
+          font-size: 17px;
+        }
+      }
+      .social-buttons {
+        margin: 0 25px;
+        .signin-social {
+          height: 50px;
+          img {
+            width: 20px;
+            height: 20px;
+            margin-right: 02px;
+          }
+          span {
+            font-size: 17px;
+          }
+        }
+      }
+
+      .input-feedback {
+        bottom: auto;
+        top: 50%;
+        right: 35px;
+        margin-top: -11px;
+      }
+    }
+    .forgot-password-row {
+      margin-top: 12px;
+      font-size: 15px;
+      span:nth-child(2n) {
+        padding: 0 10px;
+      }
+    }
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "name": "ground-control",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "api-lint": "eslint --fix 'web-api/src/**/*.js'",
+    "web-lint": "eslint --fix 'web-app/src/**/*.{js,jsx,ts,tsx}'",
+    "fix-api-lint": "prettier --write 'web-api/src/**/*.js'",
+    "fix-web-lint": "prettier --write 'web-app/src/**/*.{js,jsx,ts,tsx}'"
+  },
+  "dependencies": {
+    "typescript": "4.0.2"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^3.9.1",
+    "@typescript-eslint/parser": "^3.9.1",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.7.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-react-app": "^5.2.1",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-flowtype": "^5.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.20.6",
+    "eslint-plugin-react-hooks": "^4.1.0",
+    "eslint-plugin-standard": "^4.0.1",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "prettier": "^2.1.0"
+  },
+  "lint-staged": {
+    "web-api/src/**/*.js": [
+      "eslint --fix",
+      "git add"
+    ],
+    "web-api/src/**/*.{js,json,md}": [
+      "prettier --write",
+      "git add"
+    ],
+    "web-app/src/**/*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "git add"
+    ],
+    "web-app/src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all",
+    "printWidth": 120
+  },
+  "packageManager": "yarn@3.4.1"
+}

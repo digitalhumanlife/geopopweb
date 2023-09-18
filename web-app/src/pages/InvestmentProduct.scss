@@ -1,0 +1,127 @@
+@import '../statics/styles/variables';
+@import '../statics/styles/mixins';
+
+.invest-product-wrapper {
+  margin: 3rem auto;
+  font-size: 15px;
+  h1 {
+    margin: 1rem 0;
+  }
+
+  .search-wrapper {
+    display: flex;
+    justify-content: flex-end;
+
+    .p-dropdown {
+      width: 150px;
+
+      .p-dropdown-label {
+        text-align: left;
+      }
+    }
+    div {
+      &:not(:last-child) {
+        margin-right: 8px;
+      }
+    }
+    .search-group {
+      position: relative;
+      .p-inputtext {
+        width: 200px;
+        padding-right: 28px;
+        box-shadow: none !important;
+      }
+      .pi-search {
+        position: absolute;
+        right: 8px;
+        top: 8px;
+        color: #a6a6a6;
+      }
+    }
+  }
+
+  .row {
+    margin: 0 auto;
+  }
+  .new-investment-item {
+    margin-bottom: 30px;
+    padding: 30px 0;
+    cursor: pointer;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid #ccc;
+    }
+
+    .title {
+      font-size: 30px;
+      margin: 3rem 0;
+    }
+
+    img {
+      width: 80%;
+      height: 80%;
+      margin: 10%;
+      border: 1px solid #ccc;
+      border-radius: 18px;
+    }
+
+    .desc {
+      @include fontSize(14px);
+      font-weight: bold;
+      margin-top: 2rem;
+    }
+
+    .custom-progress {
+      width: 70%;
+
+      .bar {
+        margin: 0.5rem 1rem;
+        height: 1.2rem;
+        border-radius: 5px;
+        background: linear-gradient(to right, rgba(7, 147, 240, 1) 0, rgba(57, 108, 205, 1) 100%);
+      }
+
+      .value {
+        margin: 0rem 1rem;
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+
+  .p-paginator {
+    background: transparent;
+    border: none;
+  }
+}
+@include media-breakpoint-down('xs') {
+  .invest-product-wrapper {
+    margin: 0 !important;
+    h1 {
+      font-size: 25px !important;
+    }
+
+    .search-wrapper {
+      .p-dropdown {
+        width: 110px;
+      }
+
+      .search-group {
+        .p-inputtext {
+          width: 150px;
+        }
+      }
+    }
+
+    .new-investment-item {
+      .custom-progress {
+        width: 100%;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+      }
+    }
+  }
+}

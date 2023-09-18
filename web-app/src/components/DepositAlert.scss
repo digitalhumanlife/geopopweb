@@ -1,0 +1,95 @@
+@import '../statics/styles/variables';
+@import '../statics/styles/mixins';
+.common-dialog--deposit {
+  &.p-dialog .p-dialog-content {
+    padding-bottom: 56px;
+  }
+  .dtl {
+    margin-top: 56px;
+    border: solid #303030;
+    border-width: 2px 0;
+    padding: 28px 20px 48px;
+    li {
+      display: grid;
+      grid-template-columns: auto 153px;
+      padding: 0 0 13px;
+    }
+    &-head {
+      margin-bottom: 8px;
+      color: #c5c6c6;
+      font-size: 17px;
+      line-height: 25px;
+    }
+    &-left {
+      text-align: left;
+    }
+    &-right {
+      padding-right: 20px;
+      text-align: right;
+    }
+    &-cont {
+      font-size: 16px;
+      line-height: 24px;
+      .dtl-left {
+        display: grid;
+        grid-template-columns: 100px auto;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down('xs') {
+  .common-dialog--deposit {
+    &.p-dialog {
+      height: auto;
+      .p-dialog-content {
+        padding: 55px 25px;
+        text-align: center;
+      }
+    }
+    .common-dialog__inner {
+      .title {
+        font-size: 25px;
+        line-height: 35px;
+        + .cmt {
+          margin-top: 28px;
+          font-size: 17px;
+          line-height: 24px;
+        }
+      }
+      .cmt--sub {
+        padding-top: 8px;
+        font-size: 13px;
+        font-family: 'Noto Sans KR Regular';
+        line-height: 19px;
+      }
+    }
+    .dtl {
+      margin-top: 32px;
+      border-width: 1px 0;
+      padding: 25px 10px 20px;
+      li {
+        display: flex;
+        justify-content: space-between;
+      }
+      &-head {
+        margin-bottom: 9px;
+        font-size: 17px;
+        line-height: 25px;
+      }
+      &-cont {
+        font-size: 15px;
+        line-height: 22px;
+        .dtl-left {
+          grid-template-columns: 70px auto;
+        }
+      }
+      .dtl-right {
+        padding-right: 0;
+      }
+    }
+    .submit-button {
+      margin-top: 50px;
+    }
+  }
+}

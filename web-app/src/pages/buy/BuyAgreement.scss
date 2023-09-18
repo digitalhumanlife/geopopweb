@@ -1,0 +1,182 @@
+@import '../../statics/styles/variables';
+@import '../../statics/styles/mixins';
+
+.buy-agreement-wrapper {
+  .buy-agreement-container {
+    padding: 170px 133px 196px;
+    width: $page-width;
+    margin: 0 auto;
+
+    img {
+      width: 165px;
+      height: 39px;
+    }
+
+    .title {
+      margin-top: 55px;
+      p {
+        font-size: 20px;
+        line-height: 20px;
+        padding-top: 15px;
+        color: #535353;
+      }
+    }
+    .agreement-cb-wrapper {
+      margin-top: 87px;
+
+      .p-checkbox-label {
+        font-size: 16.67px;
+        line-height: 16.67px;
+        color: #535353;
+        margin-left: 19px;
+      }
+    }
+
+    .p-checkbox,
+    .p-checkbox-box {
+      width: 28px;
+      height: 28px;
+      border-radius: 0;
+      border-width: 2px;
+      border-color: #cacaca !important;
+
+      .p-checkbox-icon {
+        padding-top: 3px;
+        font-size: 17px;
+        font-weight: bold !important;
+        font-family: 'primeicons' !important;
+        font-style: normal;
+        font-weight: normal;
+        font-feature-settings: normal;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        display: inline-block;
+        -webkit-font-smoothing: antialiased;
+
+        &::before {
+          content: '\e909';
+          color: #cacaca;
+        }
+      }
+
+      .p-highlight {
+        background-color: #678dce;
+        border-color: #678dce;
+
+        .p-checkbox-icon {
+          &::before {
+            color: #ffffff;
+          }
+        }
+      }
+
+      .p-focus {
+        box-shadow: none !important;
+      }
+    }
+
+    .checkbox-error {
+      .p-checkbox-box {
+        border-color: red;
+      }
+    }
+
+    .agreement-content {
+      font-size: 16px;
+      line-height: 24px;
+      border: 1px solid #d9d9d9;
+      margin-top: 14px;
+      color: #7e7e7e;
+      padding: 34px;
+      max-height: 400px;
+      overflow: auto;
+
+      > div.mt-30 {
+        margin-top: 30px;
+      }
+
+      .react-pdf__Document {
+        height: 600px;
+        overflow: auto;
+      }
+
+      .react-pdf__Page__canvas {
+        width: 100% !important;
+        height: 100% !important;
+      }
+    }
+
+    .accept-all-cb-wrapper {
+      text-align: center;
+      margin-top: 23px;
+
+      .p-checkbox-label {
+        font-size: 16.67px;
+        line-height: 16.67px;
+        color: #535353;
+        margin-left: 19px;
+      }
+    }
+
+    .sign-wrapper {
+      text-align: center;
+      margin-top: 89px;
+
+      span {
+        font-size: 16.67px;
+        line-height: 16.67px;
+        margin-right: 25px;
+      }
+      .p-inputtext {
+        font-size: 16.67px;
+        line-height: 16.67px;
+        border: none;
+        border-radius: 0;
+        border-bottom: 2px solid #535353;
+        box-shadow: none;
+        padding: 0;
+        width: 189px;
+      }
+    }
+
+    .agree-above {
+      text-align: center;
+      margin-top: 35px;
+
+      label {
+        font-size: 16.67px;
+        line-height: 16.67px;
+        margin-right: 12px;
+      }
+    }
+
+    .submit-wrapper {
+      text-align: center;
+      margin-top: 66px;
+
+      .p-button {
+        width: 159px;
+        height: 54px;
+        background-color: #3f3f3f;
+        border-radius: 0;
+        box-shadow: none;
+        font-size: 18px;
+        line-height: 18px;
+        &:disabled {
+          filter: grayscale(1) opacity(0.7);
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down('xs') {
+  .buy-agreement-wrapper {
+    .buy-agreement-container {
+      padding: 44px 20px;
+      width: 100%;
+    }
+  }
+}

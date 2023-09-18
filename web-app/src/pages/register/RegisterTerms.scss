@@ -1,0 +1,195 @@
+@import '../../statics/styles/variables';
+@import '../../statics/styles/mixins';
+
+.register-term-content {
+  margin: 0 auto;
+  padding: 43px 131px 185px;
+  width: $page-width;
+
+  .text-blue {
+    color: #6287de;
+  }
+  .input-check {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    padding-left: 10px;
+    height: 25px;
+    &--promotion {
+      margin-top: -15px;
+    }
+
+    .agree-error {
+      padding-left: 10px;
+      color: #f00;
+    }
+    div.agree-error {
+      padding-left: 0;
+    }
+  }
+  .full-conset-cb-wrapper {
+    margin-bottom: 34px;
+    box-sizing: content-box;
+    border-bottom: 1px solid #c5c6c6;
+    padding-bottom: 17px;
+  }
+  .p-checkbox-box {
+    border-radius: 13px;
+    background-color: #c5c6c6;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    .p-checkbox-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-align: center;
+      font-size: 14px;
+      font-weight: bold;
+      font-family: 'primeicons' !important;
+      font-style: normal;
+      -webkit-font-smoothing: antialiased;
+      &::before {
+        content: '\e909';
+      }
+    }
+    &.p-highlight {
+      background-color: #678dce;
+      border-color: #678dce;
+    }
+
+    &.p-focus {
+      box-shadow: none !important;
+    }
+  }
+
+  .p-checkbox-label {
+    margin-left: 16px;
+    font-size: 16px;
+  }
+  .term-content {
+    margin: 17px 0 36px;
+    border: 1px solid #c5c6c6;
+    padding: 25px 32px;
+    max-height: 400px;
+    line-height: 24px;
+    color: #777;
+    font-size: 16px;
+    font-family: 'Noto Sans KR Regular';
+    overflow: hidden;
+    overflow-y: auto;
+    > div.mt-30 {
+      margin-top: 30px;
+    }
+
+    .react-pdf__Document {
+      height: 600px;
+      overflow: auto;
+    }
+
+    .react-pdf__Page__canvas {
+      width: 100% !important;
+      height: 100% !important;
+    }
+  }
+}
+
+.submit-wrapper {
+  margin-top: 110px;
+  text-align: center;
+
+  .cmt {
+    margin-bottom: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    word-break: keep-all;
+  }
+  .agree-error {
+    margin: -44px 0 20px;
+    color: #f00;
+    font-size: 16px;
+  }
+  .p-button {
+    margin: 0 13px;
+    background-color: #678dce;
+    min-width: 148px;
+    height: 44px;
+    font-size: 16px;
+    font-weight: bold;
+    &.corporate {
+      background-color: #002855;
+    }
+    &:disabled {
+      filter: grayscale(1) opacity(0.7);
+      cursor: not-allowed;
+    }
+  }
+}
+
+@include media-breakpoint-down('xs') {
+  .register-term-content {
+    padding: 38px 11px 120px;
+    width: 100%;
+    .input-check {
+      align-items: flex-start;
+      margin-bottom: 0;
+      padding: 0 0 11px 5px;
+      height: auto;
+
+      .p-checkbox {
+        margin-top: 3px;
+      }
+      &.full-conset-cb-wrapper {
+        margin-bottom: 37px;
+      }
+    }
+    .p-checkbox-box {
+      width: 21px;
+      height: 21px;
+      line-height: 21px;
+      .p-checkbox-icon {
+        font-size: 11px;
+      }
+    }
+    .p-checkbox-label {
+      margin-left: 5px;
+      vertical-align: top;
+      font-size: 17px;
+      line-height: 25px;
+      .text-blue {
+        font-size: 15px;
+      }
+    }
+
+    .term-content {
+      margin: 0 0 40px;
+      padding: 21px 18px 8px 21px;
+      max-height: 252px;
+      line-height: 25px;
+    }
+    .input-check--promotion {
+      margin-top: -22px;
+    }
+  }
+  .submit-wrapper {
+    margin-top: 45px;
+    .p-button {
+      min-width: 135px;
+      margin: 0 7px;
+      border-radius: 5px;
+      padding: 0 20px;
+      height: 50px;
+      font-size: 19px;
+    }
+    .cmt {
+      margin-bottom: 47px;
+      font-size: 18px;
+      line-height: 26px;
+    }
+    .agree-error {
+      margin: -10px 0 32px;
+      font-size: 18px;
+    }
+  }
+}

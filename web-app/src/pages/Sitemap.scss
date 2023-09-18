@@ -1,0 +1,68 @@
+@import '../statics/styles/variables';
+@import '../statics/styles/mixins';
+
+.sitemap-container {
+  margin: 0 auto;
+  padding: 98px 0;
+  text-align: center;
+}
+
+.sitemap-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 200px);
+  justify-content: center;
+  column-gap: 140px;
+  row-gap: 140px;
+  .subject {
+    margin-bottom: 16px;
+    background-color: #002855;
+    height: 50px;
+    line-height: 50px;
+    color: #fff;
+    text-align: center;
+    font-size: 18px;
+  }
+  li {
+    margin-top: 12px;
+    border-bottom: 1px solid #ebebeb;
+    padding: 14px 20px;
+    a {
+      display: block;
+      text-align: left;
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+  .sublist {
+    padding-left: 40px;
+  }
+}
+@include media-breakpoint-down('xs') {
+  .sitemap-container {
+    margin: 0 auto;
+    padding: 35px 37px 73px;
+    text-align: center;
+  }
+
+  .sitemap-grid {
+    grid-template-columns: repeat(2, 50%);
+    column-gap: 40px;
+    row-gap: 60px;
+    .subject {
+      margin-bottom: 5px;
+      height: 35px;
+      font-size: 17px;
+      line-height: 35px;
+    }
+    li {
+      padding: 8px 10px;
+      a {
+        font-size: 15px;
+        line-height: 22px;
+      }
+    }
+    .sublist {
+      padding-left: 15px;
+    }
+  }
+}
